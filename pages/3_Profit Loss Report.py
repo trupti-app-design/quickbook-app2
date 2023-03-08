@@ -9,7 +9,7 @@ from gsheetsdb import connect
 #rows = conn.execute(f'SELECT * FROM "{gsheet_url}"')
 #df = pd.DataFrame(rows)
 #st.write(df)
-df=pd.read_excel(r"C:\Stripe\trial dataframe.xlsx")
+df=pd.read_excel("trial dataframe.xlsx")
 #df=st.session_state["dataframe"]
 #df = df.astype(str)
 
