@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import time
 import numpy as np
-from gsheetsdb import connect
+#from gsheetsdb import connect
 
 #gsheet_url = "https://docs.google.com/spreadsheets/d/1zxlIEnIs_EEaKpOpdNoBy4mkWyCQQaWN/edit?usp=sharing&ouid=104705586520802843436&rtpof=true&sd=true"
 #conn = connect()
