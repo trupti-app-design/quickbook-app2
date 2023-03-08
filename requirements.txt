@@ -1,0 +1,12 @@
+beautifulsoup4==4.11.2
+datefinder==0.7.3
+fiscalyear==0.4.0
+gsheetsdb==0.1.13.1
+numpy==1.21.5
+pandas==1.5.3
+plotly==5.6.0
+python_dateutil==2.8.2
+regex==2022.3.15
+selenium==4.8.2
+streamlit==1.17.0
+timestring==1.6.4
