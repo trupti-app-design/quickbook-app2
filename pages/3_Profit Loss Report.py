@@ -5,8 +5,7 @@ import numpy as np
 import streamlit as st
 from google.oauth2 import service_account
 from gsheetsdb import connect
-import gspread
-import pandas.io.sql as psql
+
 
 credentials = service_account.Credentials.from_service_account_info(
     st.secrets["gcp_service_account"],
