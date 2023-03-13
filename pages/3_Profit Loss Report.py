@@ -2,16 +2,35 @@ import pandas as pd
 import streamlit as st
 import time
 import numpy as np
-#from gsheetsdb import connect
+import streamlit as st
+from google.oauth2 import service_account
+from gsheetsdb import connect
+import gspread
+import pandas.io.sql as psql
 
-#gsheet_url = "https://docs.google.com/spreadsheets/d/1zxlIEnIs_EEaKpOpdNoBy4mkWyCQQaWN/edit?usp=sharing&ouid=104705586520802843436&rtpof=true&sd=true"
-#conn = connect()
-#rows = conn.execute(f'SELECT * FROM "{gsheet_url}"')
-#df = pd.DataFrame(rows)
-#st.write(df)
-df=pd.read_excel("trial dataframe.xlsx")
-#df=st.session_state["dataframe"]
-#df = df.astype(str)
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"],
+    scopes=[
+        "https://www.googleapis.com/auth/spreadsheets",
+    ],
+)
+conn = connect(credentials=credentials)
+cursor=conn.cursor()
+# Perform SQL query on the Google Sheet.
+# Uses st.cache_data to only rerun when the query changes or after 10 min.
+#@st.cache_data(ttl=600)
+def run_query(query):
+    rows = conn.execute(query, headers=1)
+    rows = rows.fetchall()
+    return rows
+
+sheet_url = st.secrets["private_gsheets_url"]
+sql_query = run_query(f'SELECT * FROM "{sheet_url}"')
+
+
+df=pd.read_sql(f'SELECT * FROM "{sheet_url}"',conn,index_col="Id")
+conn.close()
+df
 
 df=df.replace({'\$':''}, regex = True)
 
