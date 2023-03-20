@@ -7,8 +7,8 @@ df=st.session_state['dataframe']
 
 
 #st.write(df)
-df.rename(columns = {'Unnamed: 0':'Categories'}, inplace = True)
-st.write(df)
+df.rename(columns = {'Category':'Categories'}, inplace = True)
+#st.write(df)
 gross_sales=df[df['Categories']=='Sales']
 gross_sales=gross_sales.loc[:,'Categories':'Jul. 2022']
 gross_sales=gross_sales.set_index('Categories').T.rename_axis('Categories').reset_index()
